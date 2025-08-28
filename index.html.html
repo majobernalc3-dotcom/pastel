@@ -1,0 +1,125 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta Secreta by myeya</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fce4ec;
+    }
+    .screen {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .active {
+      display: flex;
+    }
+    .password-screen {
+      flex-direction: column;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .key {
+      background-color: #f8bbd0;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .key:hover {
+      background-color: #f48fb1;
+    }
+    .input-display {
+      font-size: 24px;
+      margin-top: 20px;
+      letter-spacing: 8px;
+    }
+    .notepad {
+      background-color: #fff0f6;
+      border: 3px solid #f8bbd0;
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      text-align: left;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      line-height: 1.6;
+    }
+    .notepad h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="passwordScreen" class="screen password-screen active">
+  <h2>🔒 Enter password</h2>
+  <div class="input-display" id="inputDisplay">•••••</div>
+  <div class="keypad">
+    <button class="key" onclick="enterDigit('1')">1</button>
+    <button class="key" onclick="enterDigit('2')">2</button>
+    <button class="key" onclick="enterDigit('3')">3</button>
+    <button class="key" onclick="enterDigit('4')">4</button>
+    <button class="key" onclick="enterDigit('5')">5</button>
+    <button class="key" onclick="enterDigit('6')">6</button>
+    <button class="key" onclick="enterDigit('7')">7</button>
+    <button class="key" onclick="enterDigit('9')">9</button>
+    <button class="key" onclick="enterDigit('8')">8</button>
+    <div></div>
+    <button class="key" onclick="enterDigit('0')">0</button>
+    <div></div>
+  </div>
+</div>
+<div id="notepadScreen" class="screen">
+  <div class="notepad">
+    <h3>📅 31 Agosto 2025 </h3>
+    <h4>💌 Mi linda </h4>
+    <p>
+        <p>Mi amor, hoy es tu cumpleaños y aunque la distancia me impida estar a tu lado físicamente, quiero que sepas que mi corazón está contigo más que nunca. Naciste un 31 de agosto y esa fecha, desde que te conocí, se convirtió en una de mis favoritas, porque marcó el día en que el mundo recibió a alguien tan especial como tú.</p>
+
+      <p>Desde que llegaste a mi vida, todo cambió para mejor. Eres mi calma, mi alegría diaria, la razón por la que sonrío incluso en los días más difíciles. Me haces sentir acompañada, amada y afortunada de compartir contigo esta historia que, aun con kilómetros de distancia, se siente fuerte y real.</p>
+
+      <p>Hoy quiero celebrarte a mi manera, recordándote lo valiosa que eres, lo noble de tu corazón, lo hermosa de tu sonrisa y lo importante que eres para mí. Gracias por existir, por iluminar mi vida como el sol, por hacerme sentir completa.</p>
+
+      <p>Feliz cumpleaños, mi mujer, mi vida, mi todo. Este es solo uno de muchos cumpleaños que quiero celebrar contigo, y aunque hoy no pueda tomarte de la mano, sé que pronto lo haré. Te amo profundamente, Jahaira, y me siento afortunada de que seas tú quien camina a mi lado en este viaje.</p>
+
+      Te amo profundamente. ♡
+    </p>
+  </div>
+</div>
+<script>
+  const correctPassword = '31825';
+  let input = '';
+  function enterDigit(digit) {
+    if (input.length < 5) {
+      input += digit;
+    }
+    const display = document.getElementById('inputDisplay');
+    display.textContent = input.padEnd(5, '•');
+    if (input.length === 5) {
+      if (input === correctPassword) {
+        document.getElementById('passwordScreen').classList.remove('active');
+        document.getElementById('notepadScreen').classList.add('active');
+      } else {
+        alert('Contraseña incorecta, intenta de nuevo');
+        input = '';
+        display.textContent = '•••••';
+      }
+    }
+  }
+</script>
+</body>
+</html>
